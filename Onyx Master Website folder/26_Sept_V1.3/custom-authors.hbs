@@ -1,0 +1,151 @@
+{{!< default}}
+
+{{#contentFor 'title'}}{{ meta_title }}{{/contentFor}}
+
+{{#post}}
+  <header class='c-page-header'>
+    <div class='o-grid o-grid--2-columns'>
+      <div>
+        <h1 class='c-topper__headline u-font-headline u-font-family-sansSerif'>{{ title }}</h1>
+      </div>
+    </div>
+  </header>
+{{/post}}
+
+{{!-- Main Authors Section --}}
+<div class='c-section c-section--authors'>
+  <div class='o-grid'>
+    <div class='c-section-heading'>
+      <h2 class='c-section-heading__title u-font-headline u-font-family-sansSerif'>Editorial Team</h2>
+    </div>
+  </div>
+  
+  <div class='js-grid o-grid o-grid--3-columns'>
+    {{#get 'authors' limit='all'}}
+      {{#foreach authors}}
+        {{#match name "!=" "Shaurya Parekh"}}
+          {{#match name "!=" "Anna de Beer"}}
+            {{#match name "!=" "Leyla Nasari"}}
+              {{#match name "!=" "Anahad Kaur Hanspal"}}
+                {{#match name "!=" "Makipan Ketheeswaran"}}
+                  {{#match name "!=" "Ben Phillips"}}
+                    {{#match name "!=" "Jack Topliss"}}
+                        {{#match name "!=" "Dr. Alexander Green"}}
+                          {{#match name "!=" "Rhys Manning Garrero"}}
+                            {{#match name "!=" "Dr. Luka Dancyger-Stevens"}}
+                              {{#match name "!=" "Disha Khanna"}}
+                                {{#match name "!=" "Eleanor Bryant"}}
+                                  {{#match name "!=" "Rhys Garrero"}}
+                                    {{#match name "!=" "Press Releases"}}
+                                      {{> card-author }}
+                                    {{/match}}
+                                  {{/match}}
+                                {{/match}}
+                              {{/match}}
+                            {{/match}}
+                          {{/match}}
+                        {{/match}}
+                    {{/match}}
+                  {{/match}}
+                {{/match}}
+              {{/match}}
+            {{/match}}
+          {{/match}}
+        {{/match}}
+      {{/foreach}}
+    {{/get}}
+  </div>
+</div>
+
+{{!-- Student Voice Section --}}
+<div class='c-section c-section--student-voice'>
+  <div class='o-grid'>
+    <div class='c-section-heading'>
+      <h2 class='c-section-heading__title u-font-headline u-font-family-sansSerif'>Contributors</h2>
+    </div>
+  </div>
+  
+  <div class='js-grid o-grid o-grid--3-columns'>
+    {{#get 'authors' limit='all'}}
+      {{#foreach authors}}
+        {{#match name "==" "Shaurya Parekh"}}
+          {{> card-author }}
+        {{/match}}
+        {{#match name "==" "Anna de Beer"}}
+          {{> card-author }}
+        {{/match}}
+        {{#match name "==" "Leyla Nasari"}}
+          {{> card-author }}
+        {{/match}}
+        {{#match name "==" "Anahad Kaur Hanspal"}}
+          {{> card-author }}
+        {{/match}}
+        {{#match name "==" "Makipan Ketheeswaran"}}
+          {{> card-author }}
+        {{/match}}
+        {{#match name "==" "Ben Phillips"}}
+          {{> card-author }}
+        {{/match}}
+        {{#match name "==" "Jack Topliss"}}
+          {{> card-author }}
+        {{/match}}
+        {{#match name "==" "Dr. Alexander Green"}}
+          {{> card-author }}
+        {{/match}}
+        {{#match name "==" "Rhys Manning Garrero"}}
+          {{> card-author }}
+        {{/match}}
+        {{#match name "==" "Dr. Luka Dancyger-Stevens"}}
+          {{> card-author }}
+        {{/match}}
+        {{#match name "==" "Disha Khanna"}}
+          {{> card-author }}
+        {{/match}}
+        {{#match name "==" "Eleanor Bryant"}}
+          {{> card-author }}
+        {{/match}}
+        {{#match name "==" "Rhys Garrero"}}
+          {{> card-author }}
+        {{/match}}
+        {{#match name "==" "Anis Fahandej-Sadi"}}
+          {{> card-author }}
+        {{/match}}
+      {{/foreach}}
+    {{/get}}
+    
+    {{!-- Special TLDR Biotech entry for Anis --}}
+    <div class='c-card-author'>
+      <div class='c-card-author__content'>
+        <a href='https://tldrbio.tech/' class='c-card-author__url' target='_blank' rel='noopener noreferrer'>
+          <div class='c-card-author__media'>
+            <img class='c-card-author__image lazyload' data-src='{{asset "images/Anis_headshot.jpg"}}' alt='Anis Fahandej-Sadi' width='96' height='96'>
+          </div>
+          <h2 class='c-card-author__name'>Anis Fahandej-Sadi</h2>
+        </a>
+        <p class='c-card-author__bio'>Head Editor, TLDR Biotech</p>
+      </div>
+      <div class='c-card-author__posts'>
+        <h3 class='c-card-author__posts-title'>
+          <a href='https://tldrbio.tech/' class='c-teaser__link' target='_blank' rel='noopener noreferrer'>Read the TLDR Biotech Newsletter</a>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Sponsors Section --}}
+{{> sponsors-carousel }}
+
+{{!-- Editorial Policy Section --}}
+<div class='c-section c-section--editorial-policy'>
+  <div class='o-grid'>
+    <div class='c-section-heading'>
+      <h2 class='c-section-heading__title u-font-headline u-font-family-sansSerif'>Editorial Policy</h2>
+    </div>
+    <div class='c-section__content'>
+      <p>The topics covered in Onyx Newsroom articles are selected by the editorial team independent of client input. Job postings or related content that appear alongside stories are placed by Onyx staff at the time of publication.</p>
+      
+      <p>The editors at Onyx strive for accuracy in every article we publish, but mistakes do happen. If a story contains a factual error, we will correct it and post a dated correction, clarification, or editor's note at the bottom. If you detect an error in one of our articles, please email <a href="mailto:adil@onyxnewsroom.com">adil@onyxnewsroom.com</a></p>
+    </div>
+  </div>
+</div>

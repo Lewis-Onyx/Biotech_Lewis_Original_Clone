@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Flask App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #ffffff;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        tr:hover {
+            background-color: #ffffff;
+        }
+        td img {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the L room!</h1>
+    <h2>List of Companies</h2>
+    
+    <!-- Added dropdown for sorting -->
+    <label for="sort">Sort by:</label>
+    <select id="sort" onchange="sortTable()">
+        <option value="name">Name</option>
+        <option value="price">Price</option>
+        <option value="marketCap">Market Cap</option>
+    </select>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Logo</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Market Cap</th>
+                <th>3-Months Trend</th>
+            </tr>
+        </thead>
+        <tbody id="companyTable">
+            {% for symbol, company_data in data.items() %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td><img src="{{ company_data['logo_url'] }}" alt="{{ symbol }} logo" width="50"></td>
+                    <td>{{ company_data['info']['shortName'] }} ({{ symbol }})</td>
+                    <td>${{ company_data['info']['currentPrice'] }}</td>
+                    <td>${{ company_data['info']['marketCap'] | round(0, 'common') }}</td>
+                    <td><img src="data:image/png;base64,{{ company_data['plot'] }}" alt="Stock Trend" width="100"></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function sortTable() {
+            const table = document.getElementById("companyTable");
+            const rows = Array.from(table.rows);
+            const sortBy = document.getElementById("sort").value;
+
+            rows.sort((a, b) => {
+                const aValue = sortBy === 'name' ? a.cells[2].innerText : (sortBy === 'price' ? parseFloat(a.cells[3].innerText.replace('$', '')) : parseFloat(a.cells[4].innerText.replace('$', '').replace(/,/g, '')));
+                const bValue = sortBy === 'name' ? b.cells[2].innerText : (sortBy === 'price' ? parseFloat(b.cells[3].innerText.replace('$', '')) : parseFloat(b.cells[4].innerText.replace('$', '').replace(/,/g, '')));
+                return aValue > bValue ? 1 : -1;
+            });
+
+            // Clear the table and append sorted rows
+            table.innerHTML = '';
+            rows.forEach(row => table.appendChild(row));
+        }
+    </script>
+</body>
+</html> 
